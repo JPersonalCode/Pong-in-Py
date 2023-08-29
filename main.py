@@ -1,24 +1,16 @@
-# Imports
+
 import turtle
 
 
-# Globals
 
-# Functions
-
-# Call Stack
-
-# Create Screen
-
-# Import required library
-
- 
+# Object Creation
+# Drawing screen and game elemets
  
 # Create screen
-sc = turtle.Screen()
-sc.title("Pong")
-sc.bgcolor("Black")
-sc.setup(width=1000, height=600)
+Screen = turtle.Screen()
+Screen.title("Pong")
+Screen.bgcolor("Black")
+Screen.setup(width=1000, height=600)
 
 #Left Paddle
 left_pad = turtle.Turtle()
@@ -48,7 +40,16 @@ ball.goto(0,0)
 ball.dx = 5
 ball.dy = -5
 
+# Score Display
+score_display = turtle.Turtle()
+score_display.color("White")
+score_display.penup()
+score_display.hideturtle()
+score_display.goto(0,260)
+score_display.write("Player 1: 0 Player 2: 0", align="center",font=("Arial",24,"normal"))
+
 # Keybindings 
+#Creating keybinds and there assosiate rules and interactions
 def left_paddle_up():
     y = left_pad.ycor()
     y += 20
@@ -70,17 +71,24 @@ def right_paddle_down():
     right_pad.sety(y)
 
 
-sc.listen()
-sc.onkey(left_paddle_up,"z")
-sc.onkey(left_paddle_down,"x")
-sc.onkey(right_paddle_up,"Up")
-sc.onkey(right_paddle_down,"Down")
+Screen.listen()
+Screen.onkey(left_paddle_up,"z")
+Screen.onkey(left_paddle_down,"x")
+Screen.onkey(right_paddle_up,"Up")
+Screen.onkey(right_paddle_down,"Down")
 
+# Game Rules
+game_over = False
+winner = None
+points = {
+    "Player1": 0,
+    "Player2": 0
+}
+game_rules = {
+    "Max Points": 3,
+    "Ball_Speed": 3
+}
 
-
-
-
-
-
+# Call Stack
 while True:
-    sc.update()
+    Screen.update()
