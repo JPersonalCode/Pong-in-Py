@@ -1,5 +1,6 @@
 
 import turtle
+import time
 
 
 
@@ -32,13 +33,13 @@ right_pad.goto(400,0)
 
 # Ball
 ball = turtle.Turtle()
-ball.speed(40)
+ball.speed(400)
 ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx = 5
-ball.dy = -5
+ball.dx = 2.25
+ball.dy = -2.25
 
 # Score Display
 score_display = turtle.Turtle()
@@ -92,3 +93,34 @@ game_rules = {
 # Call Stack
 while True:
     Screen.update()
+
+    ball.setx(ball.xcor()+ball.dx)
+    ball.sety(ball.ycor()+ball.dy)
+    Screen.update()
+
+    if ball.ycor() > 280:
+        ball.sety(280)
+        ball.dy *= -1
+
+    if ball.ycor() < -280:
+        ball.sety(-280)
+        ball.dy *= -1
+
+    if ball.xcor() > 500:
+        ball.goto(0, 0)
+        ball.dy *= -1
+        
+    if  ball.xcor() < -500:
+        ball.goto(0, 0)
+        ball.dy *= -1
+
+    if (ball.xcor() > 360 and ball.xcor() < 370) and (ball.ycor() < right_pad.ycor()+40 and ball.ycor() > right_pad.ycor()-40):
+        ball.setx(360)
+        ball.dx*=-1
+        
+    if (ball.xcor()<-360 and ball.xcor()>-370) and (ball.ycor()<left_pad.ycor()+40 and ball.ycor()>left_pad.ycor()-40):
+        ball.setx(-360)
+        ball.dx*=-1
+        
+        
+        
